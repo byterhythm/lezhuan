@@ -51,14 +51,6 @@ class _LoginState extends State<Login>{
                         width: 50,
                         height: 50,
                       ),
-                      Text(
-                        ' 欢迎加入我们',
-                        style: TextStyle(
-                            fontSize: 25,
-                            letterSpacing: .6,
-                            color: Colors.pinkAccent,
-                            fontWeight: FontWeight.bold),
-                      )
                     ],
                   ),
                   SizedBox(
@@ -69,38 +61,21 @@ class _LoginState extends State<Login>{
                     height: 35,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 12.0,
-                          ),
-                          GestureDetector(
-                            onTap: _radio,
-                            child: radioButton(_isSelected),
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                          Text("记住我",
-                              style: TextStyle(
-                                  fontSize: 20, fontFamily: "Poppins-Medium"))
-                        ],
-                      ),
                       InkWell(
                         child: Container(
-                          width: 100,
-                          height: 40,
+                          width: 330,
+                          height: 45,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                Color(0xFF17ead9),
-                                Color(0xFF6078ea)
+                                Color(0xFF80CBC4),
+                                Color(0xFF26A69A)
                               ]),
-                              borderRadius: BorderRadius.circular(6.0),
+                              borderRadius: BorderRadius.circular(25.0),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Color(0xFF6078ea).withOpacity(.3),
+                                    color: Color(0xFF26A69A).withOpacity(.3),
                                     offset: Offset(0.0, 8.0),
                                     blurRadius: 8.0)
                               ]),
@@ -111,7 +86,7 @@ class _LoginState extends State<Login>{
                                 Navigator.of(context).pushReplacementNamed("/homepage");
                               },
                               child: Center(
-                                child: Text("登录",
+                                child: Text("进 入",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Poppins-Bold",
@@ -132,7 +107,7 @@ class _LoginState extends State<Login>{
                     children: <Widget>[
                       Text(
                         "新用户? ",
-                        style: TextStyle(fontFamily: "Poppins-Medium"),
+                        style: TextStyle(fontFamily: "Poppins-Medium",fontSize: 16,),
                       ),
                       InkWell(
                         onTap: () {
@@ -140,7 +115,8 @@ class _LoginState extends State<Login>{
                         },
                         child: Text("注册",
                             style: TextStyle(
-                                color: Color(0xFF5d74e3),
+                                color: Color(0xFF26A69A),
+                                fontSize: 16,
                                 fontFamily: "Poppins-Bold")),
                       )
                     ],

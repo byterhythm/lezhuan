@@ -32,13 +32,13 @@ class FormCard extends StatelessWidget {
             SizedBox(
               height: 12,
             ),
-            Text("用户名",
+            Text("账号",
                 style: TextStyle(
                     fontFamily: "Poppins-Medium",
                     fontSize: 16)),
             TextField(
               decoration: InputDecoration(
-                  hintText: "请输入用户名",
+                  hintText: "请输入手机号",
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
             ),
             SizedBox(
@@ -63,7 +63,7 @@ class FormCard extends StatelessWidget {
                 Text(
                   "忘记密码?",
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.teal[400],
                       fontFamily: "Poppins-Medium",
                       fontSize: 15),
                 )
