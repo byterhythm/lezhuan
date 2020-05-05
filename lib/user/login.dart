@@ -65,7 +65,7 @@ class _LoginState extends State<Login>{
                     children: <Widget>[
                       InkWell(
                         child: Container(
-                          width: 330,
+                          width: 300,
                           height: 45,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
