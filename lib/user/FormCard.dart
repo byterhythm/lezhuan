@@ -67,7 +67,6 @@ class FormCard extends StatelessWidget {
                       fontFamily: "Poppins-Medium",
                       fontSize: 15),
                 )
-
               ],
             ),
             SizedBox(height: 18,)

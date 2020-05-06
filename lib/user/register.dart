@@ -5,6 +5,9 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          title:Text("注册"),
+        ),
         body: Stack(fit: StackFit.expand, children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
