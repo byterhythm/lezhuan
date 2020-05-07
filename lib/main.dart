@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lezhuan/user/login.dart';
-import 'package:lezhuan/user/register.dart';
+import 'package:lezhuan/screens/login_screen.dart';
+import 'package:lezhuan/screens/register.dart';
+import 'package:lezhuan/widgets/bottom_nav_bar.dart';
 
-import 'constants.dart';
-import 'welcome_screen.dart';
+import 'common/constants.dart';
+import 'screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,21 +16,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.teal,
-//          brightness: Brightness.dark,
-//          primaryColor: hPrimaryColor,
-//          scaffoldBackgroundColor: hBackgroundColor,
-//          textTheme: TextTheme(
-//              display1: TextStyle(
-//                color: Colors.white,
-//                fontWeight: FontWeight.bold,
-//              ),
-//              button: TextStyle(
-//                color: hPrimaryColor,
-//              ),
-//              headline: TextStyle(
-//                color: Colors.white,
-//                fontWeight: FontWeight.normal,
-//              ))
       ),
       home: WelcomeScreen(),
     );

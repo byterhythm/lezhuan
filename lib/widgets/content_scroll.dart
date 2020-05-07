@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lezhuan/model/tasks.dart';
+import 'package:lezhuan/screens/task_detail.dart';
 
-import '../constants.dart';
+import '../common/constants.dart';
 
 class HorContentScroll extends StatelessWidget {
   final List<String> images;
@@ -97,7 +98,7 @@ class VerContentScroll extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -120,59 +121,76 @@ class VerContentScroll extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
             itemCount: tasks.length,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10.0,
-                  ),
-                  height: 100,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13.0),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0.0, 17.0),
-                        blurRadius: 23.0,
-                        spreadRadius: -13,
-                        color: kShadowColor,
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Image.asset(tasks[index].icon),
-                      SizedBox(width: 20,),
-                      Expanded(child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            tasks[index].title,
-                            style: Theme.of(context).textTheme.subtitle,
-                          ),
-                          Text(
-                            tasks[index].subTitle,
-                          )
-                        ],
-                      )),
-                      Padding(padding: EdgeInsets.all(10),
-                      child: Text(
-                        tasks[index].encourage,
-                        style: TextStyle(
-                          color: Colors.redAccent,
-                          fontSize: 18
+                margin: EdgeInsets.only(top: 10),
+                child: Material(
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(13.0),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 17.0),
+                          blurRadius: 23.0,
+                          spreadRadius: -13,
+                          color: kShadowColor,
                         ),
-                      ),)
-                    ],
-                  ));
+                      ],
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return TaskDetail();
+                        }));
+                      },
+                      borderRadius: BorderRadius.circular(13.0),
+                      child: Container(
+                        height: 100,
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset(tasks[index].icon),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  tasks[index].title,
+                                  style: Theme.of(context).textTheme.subtitle,
+                                ),
+                                Text(
+                                  tasks[index].subTitle,
+                                )
+                              ],
+                            )),
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                tasks[index].encourage,
+                                style: TextStyle(
+                                    color: Colors.redAccent, fontSize: 18),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
             })
       ],
     );

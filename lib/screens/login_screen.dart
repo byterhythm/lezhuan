@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lezhuan/home_srceen.dart';
+import 'package:lezhuan/screens/home_srceen.dart';
 import 'package:lezhuan/main.dart';
-import 'package:lezhuan/user/FormCard.dart';
-import 'package:lezhuan/user/register.dart';
+import 'package:lezhuan/widgets/FormCard.dart';
+import 'package:lezhuan/screens/register.dart';
 
 class Login extends StatefulWidget {
   @override
