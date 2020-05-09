@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lezhuan/screens/login_screen.dart';
 import 'package:lezhuan/screens/register.dart';
-import 'package:lezhuan/widgets/bottom_nav_bar.dart';
 
 import 'common/constants.dart';
 import 'screens/welcome_screen.dart';

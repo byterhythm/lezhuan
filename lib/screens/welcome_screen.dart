@@ -10,16 +10,11 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-
   @override
   void initState() {
     super.initState();
-    Timer(Duration(
-      seconds: 2
-    ),()=>{
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return LeZhuan();
-      }))
+    Timer(Duration(seconds: 2), () => {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){return LeZhuan();}), (route) => route == null)
     });
   }
 
@@ -30,9 +25,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
-                color: Colors.teal
-            ),
+            decoration: BoxDecoration(color: Colors.teal),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -67,14 +60,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CircularProgressIndicator(
-                      valueColor:new AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                      valueColor: new AlwaysStoppedAnimation<Color>(
+                          Colors.orangeAccent),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20),
-                      child: Text('我们一起来赚钱',style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16
-                      ),),
+                      child: Text(
+                        '我们一起来赚钱',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     )
                   ],
                 ),

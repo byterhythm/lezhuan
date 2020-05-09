@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lezhuan/screens/home_srceen.dart';
 import 'package:lezhuan/main.dart';
 import 'package:lezhuan/widgets/FormCard.dart';
