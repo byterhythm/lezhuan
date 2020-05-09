@@ -454,7 +454,7 @@ class ProfilePage extends StatelessWidget {
             height: 20,
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: 10, right: 10,bottom: 20),
             height: 240,
             width: size.width,
             decoration: BoxDecoration(
