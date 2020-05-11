@@ -12,7 +12,7 @@ final List<Task> tasks =  [
     icon: 'assets/images/logo.png',
     title: '推广活动剩余奖励1',
     subTitle: '剩余数量30000',
-    encourage: '0.6元',
+    encourage: '0.8元',
     isOpenTask: false
   ),
   Task(

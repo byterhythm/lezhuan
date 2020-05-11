@@ -580,6 +580,21 @@ class ProfilePage extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           Icon(
+                            Icons.attach_money,
+                            size: 35,
+                            color: Color(0xFFEEB863),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text('收支记录',
+                              style: TextStyle(
+                                  fontSize: 14, color: Color(0xFF262C32)))
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Icon(
                             Icons.unarchive,
                             size: 35,
                             color: Color(0xFFCE7B84),
@@ -592,21 +607,7 @@ class ProfilePage extends StatelessWidget {
                                   fontSize: 14, color: Color(0xFF262C32)))
                         ],
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.business_center,
-                            size: 35,
-                            color: Colors.transparent,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('客服中心',
-                              style: TextStyle(
-                                  fontSize: 14, color: Colors.transparent))
-                        ],
-                      ),
+
                     ],
                   ),
                 ),
