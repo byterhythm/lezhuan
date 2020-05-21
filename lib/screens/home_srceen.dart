@@ -111,58 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: hBackgroundColor,
       body: ListView(
         children: <Widget>[
-//          Stack(
-//            children: <Widget>[
-//              Container(
-//                margin: EdgeInsets.only(top: 20),
-//                child: SizedBox(
-//                  width: size.width,
-//                  height: size.height * .20,
-//                  child: PageView(
-//                    scrollDirection: Axis.horizontal,
-//                    controller: _pageController,
-//                    onPageChanged: (index) {
-//                      currentPage = index;
-//                      setState(() {});
-//                    },
-//                    children: <Widget>[
-//                      Padding(
-//                        padding: EdgeInsets.only(left: 12, right: 12),
-//                        child: Container(
-//                          decoration: BoxDecoration(
-//                              color: Colors.grey,
-//                              borderRadius: BorderRadius.circular(8)),
-//                          child: ClipRRect(
-//                            borderRadius: BorderRadius.circular(10.0),
-//                            child: Image(
-//                              image: AssetImage(_adPictures[currentPage]),
-//                              fit: BoxFit.cover,
-//                            ),
-//                          ),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              Positioned(
-//                bottom: 10,
-//                left: 0,
-//                right: 0,
-//                child: Row(
-//                  mainAxisSize: MainAxisSize.min,
-//                  mainAxisAlignment: MainAxisAlignment.center,
-//                  children: <Widget>[
-//                    for (int i = 0; i < _adPictures.length; i++)
-//                      if (i == currentPage)
-//                        circleBar(true)
-//                      else
-//                        circleBar(false)
-//                  ],
-//                ),
-//              )
-//            ],
-//          ),
           Stack(
             children: <Widget>[
               Container(

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:lezhuan/screens/home_srceen.dart';
 import 'package:lezhuan/screens/publish_screen.dart';
@@ -15,6 +16,11 @@ class _LeZhuanState extends State<LeZhuan> {
     PublishScreen(),
     UserScreen()
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void onTabTapped(int index) {
     setState(() {
@@ -45,5 +51,7 @@ class _LeZhuanState extends State<LeZhuan> {
       ),
     );
   }
+
+
 }
 

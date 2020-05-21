@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 
 class FormCard extends StatelessWidget {
+  FormCard(this.phoneController,
+      this.passwordController);
+
+  TextEditingController phoneController;
+  TextEditingController passwordController;
+
+  TextField get phoneField => TextField(
+        controller: phoneController,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            hintText: "请输入手机号",
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+      );
+
+  TextField get passwordField => TextField(
+    obscureText: true,
+    controller: passwordController,
+    decoration: InputDecoration(
+        hintText: "请输入密码",
+        hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+  );
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -33,27 +55,14 @@ class FormCard extends StatelessWidget {
               height: 12,
             ),
             Text("账号",
-                style: TextStyle(
-                    fontFamily: "Poppins-Medium",
-                    fontSize: 16)),
-            TextField(
-              decoration: InputDecoration(
-                  hintText: "请输入手机号",
-                  hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-            ),
+                style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 16)),
+            phoneField,
             SizedBox(
               height: 18,
             ),
             Text("密码",
-                style: TextStyle(
-                    fontFamily: "Poppins-Medium",
-                    fontSize: 16)),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  hintText: "请输入密码",
-                  hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-            ),
+                style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 16)),
+            passwordField,
             SizedBox(
               height: 16,
             ),
@@ -69,7 +78,9 @@ class FormCard extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 18,)
+            SizedBox(
+              height: 18,
+            )
           ],
         ),
       ),

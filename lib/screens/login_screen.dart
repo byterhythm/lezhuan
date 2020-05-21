@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:lezhuan/screens/home_srceen.dart';
-import 'package:lezhuan/main.dart';
+import 'package:lezhuan/screens/lezhuan_screen.dart';
+import 'package:lezhuan/screens/register_screen.dart';
+import 'package:lezhuan/store.dart';
 import 'package:lezhuan/widgets/FormCard.dart';
-import 'package:lezhuan/screens/register.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,11 +15,49 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isSelected = false;
+  StreamSubscription userSubscription;
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void _radio() {
     setState(() {
       _isSelected = !_isSelected;
     });
+  }
+
+  String errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    userSubscription = Store.instance.userController.listen((user) {
+      if (mounted && user != null) {
+        Navigator.pushAndRemoveUntil(
+            context, _createHomeRouter(), (router) => router == null);
+      }
+    }, onError: (Object err) {
+      setState(() {
+        errorMessage = err.toString();
+        print("login == " + errorMessage);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    userSubscription.cancel();
+  }
+
+  void login() {
+    if (phoneController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      Store.instance.userController
+          .login(phoneController.text, passwordController.text);
+    } else {
+      setState(() {
+        errorMessage = "Missing username and/or password.";
+      });
+    }
   }
 
   @override
@@ -48,7 +88,7 @@ class _LoginState extends State<Login> {
                   Row(
                     children: <Widget>[
                       Image.asset(
-                        'assets/logo.png',
+                        'assets/images/logo.png',
                         width: 50,
                         height: 50,
                       ),
@@ -57,7 +97,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 60,
                   ),
-                  FormCard(),
+                  FormCard(phoneController, passwordController),
                   SizedBox(
                     height: 35,
                   ),
@@ -83,10 +123,7 @@ class _LoginState extends State<Login> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {
-//                                Navigator.of(context).pushReplacementNamed("/homepage");
-                                Navigator.of(context).push(_createRouter());
-                              },
+                              onTap: login,
                               child: Center(
                                 child: Text("进 入",
                                     style: TextStyle(
@@ -108,7 +145,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "新用户? ",
+                        "还没有创建账户? ",
                         style: TextStyle(
                           fontFamily: "Poppins-Medium",
                           fontSize: 16,
@@ -116,10 +153,9 @@ class _LoginState extends State<Login> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed('/register');
+                          Navigator.of(context).push(_createRegisterRouter());
                         },
-                        child: Text("注册",
+                        child: Text("去创建",
                             style: TextStyle(
                                 color: Color(0xFF26A69A),
                                 fontSize: 16,
@@ -137,9 +173,18 @@ class _LoginState extends State<Login> {
   }
 }
 
-Route _createRouter() {
+Route _createHomeRouter() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => LeZhuan(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+Route _createRegisterRouter() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Register(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },
@@ -162,3 +207,27 @@ Widget radioButton(bool isSelected) => Container(
             )
           : Container(),
     );
+
+//String _host() {
+//  if (Platform.isAndroid)
+//    return "http://10.2.116.150:8888";
+//  else
+//    return "http://127.0.0.1:8888";
+//}
+//
+//void loadUserInfo() async {
+//  const clientID = "com.shr.lezhuan";
+//  const body = "username=bob&password=password&grant_type=password";
+//
+//  // Note the trailing colon (:) after the clientID.
+//// A client identifier secret would follow this, but there is no secret, so it is the empty string.
+//  final String clientCredentials =
+//      const Base64Encoder().convert("$clientID:".codeUnits);
+//  final http.Response response = await http.post('${_host()}/auth/token',
+//      headers: {
+//        "Content-Type": "application/x-www-form-urlencoded",
+//        "Authorization": "Basic $clientCredentials"
+//      },
+//      body: body);
+//  print(response.body);
+//}

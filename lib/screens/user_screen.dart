@@ -5,6 +5,8 @@ import 'dart:math' as math;
 
 import 'package:lezhuan/common/constants.dart';
 import 'package:lezhuan/model/tasks.dart';
+import 'package:lezhuan/screens/login_screen.dart';
+import 'package:lezhuan/store.dart';
 
 import 'task_detail.dart';
 
@@ -44,7 +46,7 @@ class ProfilePage extends StatelessWidget {
           Stack(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+                margin: EdgeInsets.only(left: 10, right: 10, top: 20),
                 padding: EdgeInsets.only(bottom: 50),
                 decoration: BoxDecoration(
                     color: hPrimaryColor,
@@ -198,7 +200,7 @@ class ProfilePage extends StatelessWidget {
                         padding: EdgeInsets.only(
                             left: 8, right: 8, top: 2, bottom: 2),
                         child: Text(
-                          "签到",
+                          "修改",
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ),
@@ -227,7 +229,6 @@ class ProfilePage extends StatelessWidget {
                             "+200.0",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-
                         ],
                       ),
                       SizedBox(
@@ -246,7 +247,6 @@ class ProfilePage extends StatelessWidget {
                             "+1000.0",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-
                         ],
                       ),
                     ],
@@ -283,7 +283,7 @@ class ProfilePage extends StatelessWidget {
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       children: <Widget>[
@@ -454,8 +454,8 @@ class ProfilePage extends StatelessWidget {
             height: 20,
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10,bottom: 20),
-            height: 240,
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+            height: 225,
             width: size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -475,139 +475,218 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
+                  padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.library_books,
-                            size: 35,
-                            color: Color(0xFF7EA3E2),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            print('新手教程');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.library_books,
+                                  size: 35,
+                                  color: Color(0xFF7EA3E2),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('新手教程',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('新手教程',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.people,
-                            size: 35,
-                            color: Color(0xFFEEB863),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.people,
+                                  size: 35,
+                                  color: Color(0xFFEEB863),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('邀请好友',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('邀请好友',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.share,
-                            size: 35,
-                            color: Color(0xFF7EA3E2),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.share,
+                                  size: 35,
+                                  color: Color(0xFF7EA3E2),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('发朋友圈',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('发朋友圈',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.account_circle,
-                            size: 35,
-                            color: Color(0xFFEF8A6A),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.account_circle,
+                                  size: 35,
+                                  color: Color(0xFFEF8A6A),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('客服中心',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('客服中心',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.assignment,
-                            size: 35,
-                            color: Color(0xFFF7C781),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.assignment,
+                                  size: 35,
+                                  color: Color(0xFFF7C781),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('用户协议',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('用户协议',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.security,
-                            size: 35,
-                            color: Color(0xFF66B7BD),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.security,
+                                  size: 35,
+                                  color: Color(0xFF66B7BD),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('隐私协议',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('隐私协议',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.attach_money,
-                            size: 35,
-                            color: Color(0xFFEEB863),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.attach_money,
+                                  size: 35,
+                                  color: Color(0xFFEEB863),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('收支记录',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('收支记录',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.unarchive,
-                            size: 35,
-                            color: Color(0xFFCE7B84),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Store.instance.userController.logout();
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                _createLogoutRouter(),
+                                (router) => router == null);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.unarchive,
+                                  size: 35,
+                                  color: Color(0xFFCE7B84),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text('退出登录',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Color(0xFF262C32)))
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('退出登录',
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF262C32)))
-                        ],
+                        ),
                       ),
-
                     ],
                   ),
                 ),
@@ -616,6 +695,15 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Route _createLogoutRouter() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => Login(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return child;
+      },
     );
   }
 }
