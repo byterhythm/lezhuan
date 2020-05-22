@@ -60,6 +60,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.11"
+  hashids2:
+    dependency: "direct main"
+    description:
+      name: hashids2
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   http:
     dependency: "direct main"
     description:

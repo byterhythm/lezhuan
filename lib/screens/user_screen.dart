@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:lezhuan/common/constants.dart';
+import 'package:lezhuan/common/util.dart';
 import 'package:lezhuan/model/tasks.dart';
 import 'package:lezhuan/screens/login_screen.dart';
 import 'package:lezhuan/store.dart';
@@ -90,93 +91,22 @@ class ProfilePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "专享邀请ID:38603",
+                            getMemberLevel(
+                                Store.instance.authenticatedUser.memberLevel),
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           SizedBox(
                             height: 5,
                           ),
                           Text(
-                            "V1会员",
+                            "专享邀请ID: " +
+                                ShareIdUtil().encode(
+                                    Store.instance.authenticatedUser.id),
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           )
                         ],
                       ),
                     ),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                      children: <Widget>[
-//                        Column(
-//                          children: <Widget>[
-//                            Text(
-//                              "Schedule",
-//                              style: TextStyle(color: Colors.white),
-//                            ),
-//                            Text(
-//                              "8",
-//                              style: TextStyle(fontSize: 26, color: Colors.white),
-//                            )
-//                          ],
-//                        ),
-//                        Column(
-//                          children: <Widget>[
-//                            Text(
-//                              "Events",
-//                              style: TextStyle(color: Colors.white),
-//                            ),
-//                            Text(
-//                              "12",
-//                              style: TextStyle(fontSize: 26, color: Colors.white),
-//                            )
-//                          ],
-//                        ),
-//                        Column(
-//                          children: <Widget>[
-//                            Text(
-//                              "Routines",
-//                              style: TextStyle(color: Colors.white),
-//                            ),
-//                            Text(
-//                              "4",
-//                              style: TextStyle(fontSize: 26, color: Colors.white),
-//                            )
-//                          ],
-//                        ),
-//                      ],
-//                    ),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.end,
-//                      children: <Widget>[
-//                        Column(
-//                          children: <Widget>[
-//                            Text(
-//                              "Savings",
-//                              style: TextStyle(color: Colors.white),
-//                            ),
-//                            Text(
-//                              "20K",
-//                              style: TextStyle(color: Colors.white, fontSize: 24),
-//                            )
-//                          ],
-//                        ),
-//                        SizedBox(
-//                          width: 32,
-//                        ),
-//                        Column(
-//                          children: <Widget>[
-//                            Text(
-//                              "July Goals",
-//                              style: TextStyle(color: Colors.white),
-//                            ),
-//                            Text("50K",
-//                                style: TextStyle(color: Colors.white, fontSize: 24))
-//                          ],
-//                        ),
-//                        SizedBox(
-//                          width: 16,
-//                        )
-//                      ],
-//                    ),
                   ],
                 ),
               ),
@@ -708,6 +638,22 @@ class ProfilePage extends StatelessWidget {
         return child;
       },
     );
+  }
+}
+
+String getMemberLevel(int memberLevel) {
+  if (memberLevel >= 0 && memberLevel < 10) {
+    return "V1会员";
+  } else if (memberLevel >= 10 && memberLevel < 20) {
+    return "V2会员";
+  } else if (memberLevel >= 20 && memberLevel < 30) {
+    return "V3会员";
+  } else if (memberLevel >= 30 && memberLevel < 40) {
+    return "V4会员";
+  } else if (memberLevel >= 40 && memberLevel < 50) {
+    return "V5会员";
+  } else {
+    return "V1会员";
   }
 }
 

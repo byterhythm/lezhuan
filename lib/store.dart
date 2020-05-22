@@ -85,7 +85,7 @@ class Store {
   }
 
   final StorageProvider storageProvider;
-  String _baseURL = "http://10.2.116.150:4000";
+  String _baseURL = _host();
   User _authenticatedUser;
 
   String get _storedUserKey => "user.json";
@@ -106,6 +106,13 @@ class Store {
       userController.add(null);
     }
   }
+}
+
+String _host() {
+  if (Platform.isAndroid)
+    return "http://10.2.116.150:8888";
+  else
+    return "http://127.0.0.1:8888";
 }
 
 abstract class StorageProvider {
