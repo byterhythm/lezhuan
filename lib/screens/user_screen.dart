@@ -23,10 +23,9 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Profile",
-      home: ProfilePage(),
-      debugShowCheckedModeBanner: false,
+    return Scaffold(
+      backgroundColor: hBackgroundColor,
+      body: ProfilePage(),
     );
   }
 }
@@ -79,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                             height: 16,
                           ),
                           Text(
-                            "Milan Short",
+                            Store.instance.authenticatedUser.nickName,
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           )
                         ],
@@ -226,7 +225,9 @@ class ProfilePage extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            "+200.0",
+                            "+" +
+                                Store.instance.authenticatedUser.holdingEarns
+                                    .toString(),
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ],
@@ -244,7 +245,9 @@ class ProfilePage extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            "+1000.0",
+                            "+" +
+                                Store.instance.authenticatedUser.allEarns
+                                    .toString(),
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ],
@@ -662,10 +665,10 @@ class ProfilePage extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Store.instance.userController.logout();
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                _createLogoutRouter(),
-                                (router) => router == null);
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(builder: (_) {
+                              return Login();
+                            }), (route) => route == null);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

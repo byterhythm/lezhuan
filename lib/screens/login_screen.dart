@@ -14,17 +14,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool _isSelected = false;
+  bool _isGoToRegisterPage = false;
   StreamSubscription userSubscription;
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  void _radio() {
-    setState(() {
-      _isSelected = !_isSelected;
-    });
-  }
-
   String errorMessage;
 
   @override
@@ -32,8 +25,12 @@ class _LoginState extends State<Login> {
     super.initState();
     userSubscription = Store.instance.userController.listen((user) {
       if (mounted && user != null) {
-        Navigator.pushAndRemoveUntil(
-            context, _createHomeRouter(), (router) => router == null);
+        print("login == 跳转");
+        //判断是否是从注册页面跳转回来的
+        if(!_isGoToRegisterPage){
+          Navigator.pushAndRemoveUntil(
+              context, _createHomeRouter(), (router) => router == null);
+        }
       }
     }, onError: (Object err) {
       setState(() {
@@ -50,6 +47,9 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
+    setState(() {
+      _isGoToRegisterPage = false;
+    });
     if (phoneController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       Store.instance.userController
           .login(phoneController.text, passwordController.text);
@@ -153,7 +153,15 @@ class _LoginState extends State<Login> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.of(context).push(_createRegisterRouter());
+                          setState(() {
+                            _isGoToRegisterPage = true;
+                          });
+                          Navigator.of(context)
+                              .push(_createRegisterRouter())
+                              .then((data) {
+                                //处理从注册页面返回的数据情况。
+                            print("注册页面返回情况"+data);
+                          });
                         },
                         child: Text("去创建",
                             style: TextStyle(

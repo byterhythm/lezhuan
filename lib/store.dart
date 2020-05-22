@@ -38,7 +38,6 @@ class Store {
 
   Future<Response> executeClientRequest(Request request) async {
     request.headers[HttpHeaders.authorizationHeader] = clientAuthorization;
-    print("头：" + clientAuthorization);
     return executeRequest(request);
   }
 

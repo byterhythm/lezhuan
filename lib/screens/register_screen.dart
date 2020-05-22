@@ -55,8 +55,15 @@ class _RegisterState extends State<Register> {
     super.initState();
     userSubscription = Store.instance.userController.listen((user) {
       if (mounted && user != null) {
-        print("register == pop");
-        Navigator.pop(context);
+        Fluttertoast.showToast(
+            msg: "注册成功",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.black45,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        Navigator.of(context).pop();
       }
     }, onError: (Object err) {
       setState(() {
