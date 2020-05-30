@@ -14,23 +14,23 @@ class User {
     }
   }
 
-  int id;
-  int shareId;
-  String phone;
-  String nickName;
+  var id;
+  var shareId;
+  var phone;
+  var nickName;
   AuthorizationToken token;
 
   //会员等级
-  int memberLevel;
+  var memberLevel;
 
   //用户头像
-  String userIcon;
+  var userIcon;
 
   //持有收益
-  double holdingEarns;
+  var holdingEarns;
 
   //累计收益
-  double allEarns;
+  var allEarns;
 
   Map<String, dynamic> asMap() => {
         "id": id,

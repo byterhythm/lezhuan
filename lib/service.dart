@@ -21,7 +21,7 @@ class UserService extends ServiceController<User> {
 
     var response = await store.executeClientRequest(req);
     if (response.error != null) {
-      addError(response.error);
+      addError(APIError(response.error, "login"));
       return null;
     }
     switch (response.statusCode) {
@@ -42,7 +42,7 @@ class UserService extends ServiceController<User> {
 
     var response = await store.executeClientRequest(req);
     if (response.error != null) {
-      addError(response.error);
+      addError(APIError(response.error, "register"));
       return null;
     }
 
@@ -51,10 +51,10 @@ class UserService extends ServiceController<User> {
         return getAuthenticatedUser(
             token: AuthorizationToken.fromMap(response.body));
       case 409:
-        addError(APIError("User already exists"));
+        addError(APIError("该用户已存在","register"));
         break;
       default:
-        addError(APIError(response.body["error"]));
+        addError(APIError(response.body["error"],"register"));
     }
 
     return null;
@@ -77,7 +77,7 @@ class UserService extends ServiceController<User> {
         break;
 
       default:
-        addError(new APIError(response.body["error"]));
+        addError(APIError(response.body["error"]));
     }
 
     return null;

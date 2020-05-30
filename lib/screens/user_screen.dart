@@ -1,15 +1,7 @@
-import 'dart:ui' as prefix0;
-
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
-
 import 'package:lezhuan/common/constants.dart';
-import 'package:lezhuan/common/util.dart';
-import 'package:lezhuan/model/tasks.dart';
 import 'package:lezhuan/screens/login_screen.dart';
 import 'package:lezhuan/store.dart';
-
-import 'task_detail.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -100,8 +92,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                           Text(
                             "专享邀请ID: " +
-                                ShareIdUtil().encode(
-                                    Store.instance.authenticatedUser.id),
+                                Store.instance.authenticatedUser.shareId,
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           )
                         ],

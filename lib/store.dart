@@ -7,6 +7,8 @@ import 'package:lezhuan/service.dart';
 
 import 'model/user.dart';
 
+/// [Store] 这个是控制程序的核心类
+///
 class Store {
   Store({this.storageProvider}) {
     userController = new UserService(this)
@@ -173,11 +175,14 @@ class UnauthenticatedException implements Exception {}
 
 class APIError {
   String reason;
+  String type;
 
-  APIError(this.reason) {
+  APIError(this.reason, [this.type]) {
     reason ??= "Unknown failure";
   }
 
   @override
-  String toString() => reason;
+  String toString() {
+    return reason + "|" + (type ?? "");
+  }
 }

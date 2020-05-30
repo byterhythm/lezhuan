@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lezhuan/common/le_util.dart';
 import 'package:lezhuan/screens/lezhuan_screen.dart';
 import 'package:lezhuan/screens/register_screen.dart';
 import 'package:lezhuan/store.dart';
@@ -25,7 +26,6 @@ class _LoginState extends State<Login> {
     super.initState();
     userSubscription = Store.instance.userController.listen((user) {
       if (mounted && user != null) {
-        print("login == 跳转");
         //判断是否是从注册页面跳转回来的
         if(!_isGoToRegisterPage){
           Navigator.pushAndRemoveUntil(
@@ -34,8 +34,12 @@ class _LoginState extends State<Login> {
       }
     }, onError: (Object err) {
       setState(() {
-        errorMessage = err.toString();
-        print("login == " + errorMessage);
+        if (err is APIError) {
+          errorMessage = err.toString();
+          if (err.type != null && err.type == "login") {
+            Utils().showToast(err.reason);
+          }
+        }
       });
     });
   }
@@ -157,11 +161,7 @@ class _LoginState extends State<Login> {
                             _isGoToRegisterPage = true;
                           });
                           Navigator.of(context)
-                              .push(_createRegisterRouter())
-                              .then((data) {
-                                //处理从注册页面返回的数据情况。
-                            print("注册页面返回情况"+data);
-                          });
+                              .push(_createRegisterRouter());
                         },
                         child: Text("去创建",
                             style: TextStyle(

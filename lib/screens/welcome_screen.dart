@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lezhuan/common/util.dart';
+import 'package:lezhuan/common/le_util.dart';
 import 'package:lezhuan/screens/lezhuan_screen.dart';
 import 'package:lezhuan/screens/login_screen.dart';
 import 'package:lezhuan/store.dart';

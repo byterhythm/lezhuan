@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lezhuan/common/le_util.dart';
 import 'package:lezhuan/store.dart';
 
 class Register extends StatefulWidget {
@@ -61,13 +62,17 @@ class _RegisterState extends State<Register> {
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.black45,
             textColor: Colors.white,
-            fontSize: 16.0
-        );
+            fontSize: 16.0);
         Navigator.of(context).pop();
       }
     }, onError: (Object err) {
       setState(() {
-        errorMessage = err.toString();
+        if (err is APIError) {
+          errorMessage = err.toString();
+          if (err.type != null && err.type == "register") {
+            Utils().showToast(err.reason);
+          }
+        }
       });
     });
   }
@@ -274,29 +279,23 @@ class _RegisterState extends State<Register> {
         passwordController.text.isNotEmpty &&
         rePasswordController.text.isNotEmpty) {
       if (passwordController.text != rePasswordController.text) {
-          errorMessage = "两次密码输入不一致.";
-          Fluttertoast.showToast(
-              msg: errorMessage,
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.black45,
-              textColor: Colors.white,
-              fontSize: 16.0
-          );
+        errorMessage = "两次密码输入不一致.";
+        Utils().showToast(errorMessage);
       } else {
-        Store.instance.userController
-            .register(phoneController.text,nickNameController.text, passwordController.text);
+        if (phoneController.text.length != 11) {
+          Utils().showToast("手机号码不正确");
+        } else if (passwordController.text.length < 6) {
+          Utils().showToast("密码最少6位");
+        } else if (passwordController.text.length > 12) {
+          Utils().showToast("密码最长12位");
+        } else {
+          Store.instance.userController.register(phoneController.text,
+              nickNameController.text, passwordController.text);
+        }
       }
     } else {
-        errorMessage = "缺失用户名或者密码.";
-        Fluttertoast.showToast(
-            msg: errorMessage,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.black45,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+      errorMessage = "缺失用户名或者密码.";
+      Utils().showToast(errorMessage);
     }
   }
 }
